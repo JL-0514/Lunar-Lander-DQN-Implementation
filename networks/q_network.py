@@ -1,5 +1,4 @@
 from torch import nn
-import torch.nn.functional as F
 
 class DQN(nn.Module):
     '''
@@ -21,10 +20,14 @@ class DQN(nn.Module):
         '''
         super(DQN, self).__init__()
         # Neural network
-        # TODO Improve the module by modify hidden layers
-        # For now, it has a hidden layer with 128 nodes
-        self.input = nn.Linear(n_observations, 128)
-        self.output = nn.Linear(128, n_actions)
+        # TODO Improve the module by modifying hidden layers
+        self.net = nn.Sequential(
+            nn.Linear(n_observations, 128),
+            nn.ReLU(),
+            nn.Linear(128, 128),
+            nn.ReLU(),
+            nn.Linear(128, n_actions)
+        )
     
     
     def forward(self, x):
@@ -32,5 +35,4 @@ class DQN(nn.Module):
         Define the computation performed at every call.
         The module will call this function automatically.
         '''
-        x = F.relu(self.input(x))
-        return self.output(x)
+        return self.net(x)
