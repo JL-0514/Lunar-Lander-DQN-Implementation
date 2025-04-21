@@ -4,6 +4,7 @@ import numpy as np
 import random
 import torch
 import math
+import pygame
 
 from utils.replay_buffer import ReplayBuffer
 from utils.train_logger import train_log, test_log, summarize
@@ -53,7 +54,7 @@ class DQNAgent():
         out_file: str
             The file name (no entension) where the trained agent and training log will be saved.
         render_mode: str
-            In which way will the environment render. Available choices are None, 'human', and 'rgb-array'.
+            In which way will the environment render. Available choices are None, 'human', and 'rgb_array'.
         train_mode: str
             Whether the agent is trained with vanilla DQN or extension. Available choices are 'dqn' and 'ddqn' where ddqn stands for double dqn.
         print_log: bool
@@ -169,10 +170,17 @@ class DQNAgent():
                     target_net.load_state_dict(policy_net.state_dict())
                     
                 # Visualize the training
-                if render_mode is not None:
+                if render_mode == 'human':
+                    pygame.display.set_caption(f"Episode {episode + 1} - Reward: {total_reward:.2f} - Return: {discounted_return:.2f}")
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            env.close()
+                            return
+                elif render_mode is not None:
                     still_open = env.render()
                     if still_open is False:
-                        break
+                        env.close()
+                        return
                 
                 # If the agent is terminated or truncated, continue to next episode
                 if terminated or truncated:
@@ -219,7 +227,7 @@ class DQNAgent():
         episodes: int
             The number of episodes to run in this test.
         render_mode: str
-            In which way will the environment render. Available choices are None, 'human', and 'rgb-array'.
+            In which way will the environment render. Available choices are None, 'human', and 'rgb_array'.
         print_log: str
             Whether it will print the testing log (log for each episode).
         '''
@@ -230,6 +238,7 @@ class DQNAgent():
         n_actions = env.action_space.n
         state, info = env.reset()
         n_observations = len(state)
+        
         
         # Load model (policy)
         policy = DQN(n_observations, n_actions).to(self.DEVICE)
@@ -264,10 +273,17 @@ class DQNAgent():
                 steps += 1
                 
                 # Visualize the training
-                if render_mode is not None:
+                if render_mode == 'human':
+                    pygame.display.set_caption(f"Episode {episode + 1} - Reward: {total_reward:.2f} - Return: {discounted_return:.2f} - Step: {steps}")
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            env.close()
+                            return
+                elif render_mode is not None:
                     still_open = env.render()
                     if still_open is False:
-                        break
+                        env.close()
+                        return
                 
             # Record training log
             success = 1 if total_reward >= 200 else 0
