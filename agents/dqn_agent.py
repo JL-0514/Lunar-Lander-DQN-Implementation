@@ -149,7 +149,7 @@ class DQNAgent():
                             target_q = rewards + self.DF * target_net(next_states).max(1)[0] * (~dones)
                         elif train_mode == 'ddqn':
                             # New best actions = Q(next_states, actions)
-                            new_actions = policy_net(states).argmax(1)
+                            new_actions = policy_net(next_states).argmax(1)
                             # new_Q_value = reward + discount_factor * Q'(next_state, new_actions)
                             target_q = rewards + self.DF * target_net(next_states).gather(1, 
                                     new_actions.unsqueeze(1)).squeeze(1) * (~dones)
