@@ -24,9 +24,9 @@ class DQN(nn.Module):
         self.net = nn.Sequential(
             nn.Linear(n_observations, 128),
             nn.ReLU(),
-            nn.Linear(128, 128),
+            nn.Linear(128, 64),
             nn.ReLU(),
-            nn.Linear(128, n_actions)
+            nn.Linear(64, n_actions)
         )
     
     

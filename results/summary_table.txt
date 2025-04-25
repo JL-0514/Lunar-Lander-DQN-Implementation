@@ -1,5 +1,5 @@
 Summary over last 100 episodes:
                             DQN (Vanilla)        DQN + DDQN          
-Average Episodic Reward     219.25               249.06              
-Average Return              53.52                61.65               
-Success Rate (%)            79.0                 91.0                
+Average Episodic Reward     224.74               247.35              
+Average Return              55.33                54.28               
+Success Rate (%)            86.0                 92.0                
