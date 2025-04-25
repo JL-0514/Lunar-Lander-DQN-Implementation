@@ -23,7 +23,7 @@ class DQNAgent():
         Load a trained model and test it.
     '''
     
-    # Constants need for training
+    # Hyperparameters
     # TODO Changing parameter to improve performance
     LR = 1e-4           # Learning rate (alpha)
     DF = 0.99           # Discuont factor (gamma)
