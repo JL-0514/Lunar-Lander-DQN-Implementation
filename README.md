@@ -192,7 +192,8 @@ Moreover, the smoother training curves for DDQN indicate better stability, makin
 
 These results demonstrate the value of addressing overestimation bias in reinforcement learning, particularly for tasks with sensitive reward dynamics like LunarLander-v3.
 
-Conclusion
+## Conclusion
+
 In this project, we successfully implemented DQN and DDQN agents to solve the LunarLander-v3 environment.
 Through our experiments, we demonstrated that DDQN significantly improves the agent's performance by reducing Q-value overestimation, leading to higher episodic rewards, faster convergence, and greater landing success rates.
 The DDQN agent consistently achieved a higher success rate and greater training stability compared to the vanilla DQN agent.
