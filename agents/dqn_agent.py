@@ -38,7 +38,7 @@ class DQNAgent():
     # TODO Using different functions may improve performance
     LOSS_F = torch.nn.MSELoss()
     
-    # On which device aree computations performed
+    # On which device are computations performed
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     
     
@@ -52,7 +52,7 @@ class DQNAgent():
         episodes: int
             Number of episodes the agent will go through before ending the train.
         out_file: str
-            The file name (no entension) where the trained agent and training log will be saved.
+            The file name (no extension) where the trained agent and training log will be saved.
         render_mode: str
             In which way will the environment render. Available choices are None, 'human', and 'rgb_array'.
         train_mode: str
@@ -83,7 +83,7 @@ class DQNAgent():
         epsilon = self.EPS_START
         
         # initialize a matrix to keep track of episodic reward, discounted return, 
-        # and whether the lander land successfully in each episode (1 if sucess, else 0).
+        # and whether the lander land successfully in each episode (1 if success, else 0).
         log_matrix = pd.DataFrame(columns=['reward', 'return', 'success'])
         
         # Apply Deep Q-learning Algorithm:

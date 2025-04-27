@@ -9,7 +9,7 @@ class ReplayBuffer():
     - current_state (observation) is the state before action.
     - action (int) is one of possible actions the agent can take.
     - next_state (observation) is the state after action.
-    - reward (float) is the the reward earned after taking the action in current_state.
+    - reward (float) is the reward earned after taking the action in current_state.
     - is_done (boolean) is whether the agent should stop acting in next state.
     
     The observation contains list of information [x-coordinate, y-coordinate, x-velocity, y-velocity, 
