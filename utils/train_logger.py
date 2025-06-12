@@ -1,4 +1,9 @@
-def train_log(episode, reward, dc_return, success):
+from typing import Tuple
+
+from pandas import DataFrame
+
+
+def train_log(episode: int, reward: float, dc_return: float, success: int):
     '''
     Print the total reward and discounted return in a specific episode and mark the success episode.
     
@@ -18,7 +23,7 @@ def train_log(episode, reward, dc_return, success):
         str(reward).ljust(12), str(dc_return).ljust(12), success))
 
 
-def test_log(episode, reward, dc_return, steps, success):
+def test_log(episode: int, reward: float, dc_return: float, steps: int, success: int):
     '''
     Print the total reward and discounted return in a specific episode and mark the success episode.
     
@@ -40,7 +45,7 @@ def test_log(episode, reward, dc_return, steps, success):
         str(reward).ljust(12), str(dc_return).ljust(12), str(steps).ljust(10), success))
 
 
-def summarize(log):
+def summarize(log: DataFrame)->Tuple[float, float, float]:
     '''
     Summarize the result of last 100 episode in the recorded log. The summary includes:
     - Average reward
@@ -64,7 +69,7 @@ def summarize(log):
     return reward, return_, success
 
 
-def save_summary(vanilla_log, extension_log, extension_name, out_file):
+def save_summary(vanilla_log: DataFrame, extension_log: DataFrame, extension_name: str, out_file: str):
     '''
     Create a summary table based on the average reward, average return, and success rate of the vanilla DQN
     and the extension.

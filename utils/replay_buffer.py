@@ -30,7 +30,7 @@ class ReplayBuffer():
         Get a list of random sample of transition with given batch size.
     '''
     
-    def __init__(self, capacity):
+    def __init__(self, capacity: int):
         '''
         Initialize a replay buffer with the given capacity.
         
@@ -42,7 +42,7 @@ class ReplayBuffer():
         self.memory = deque([], maxlen=capacity)
     
     
-    def store(self, transition):
+    def store(self, transition: list):
         '''
         Store the given transition in the buffer.
         
@@ -55,7 +55,7 @@ class ReplayBuffer():
         self.memory.append(transition)
 
 
-    def sample(self, batch_size):
+    def sample(self, batch_size: int):
         '''
         Get a list of random sample of transition with given batch size.
         

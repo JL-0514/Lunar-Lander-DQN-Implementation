@@ -1,4 +1,5 @@
-from torch import nn
+from torch import nn, Tensor
+
 
 class DQN(nn.Module):
     '''
@@ -6,7 +7,7 @@ class DQN(nn.Module):
     calculate the best action.
     '''
     
-    def __init__(self, n_observations, n_actions):
+    def __init__(self, n_observations: int, n_actions: int):
         '''
         Initialize a DQN that take a certain number of observations and select the best action
         from a certain number of possible actions.
@@ -30,7 +31,7 @@ class DQN(nn.Module):
         )
     
     
-    def forward(self, x):
+    def forward(self, x: Tensor)-> Tensor:
         '''
         Define the computation performed at every call.
         The module will call this function automatically.

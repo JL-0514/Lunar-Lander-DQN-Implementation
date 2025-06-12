@@ -1,3 +1,5 @@
+from typing import Optional
+
 import gymnasium as gym
 import pandas as pd
 import numpy as np 
@@ -40,9 +42,9 @@ class DQNAgent():
     
     # On which device are computations performed
     DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
-    
-    def train(self, episodes, out_file, render_mode=None, train_mode="dqn", print_log=False):
+
+    def train(self, episodes: int, out_file: str, render_mode: Optional[str] = None, train_mode: str = "dqn",
+              print_log: Optional[bool] = False)-> pd.DataFrame:
         '''
         Train the agent by given number of episodes, render mode, and training mode.
         The trained agent and the training log will be saved in a specific folder.
@@ -216,7 +218,8 @@ class DQNAgent():
         return log_matrix
     
     
-    def load_and_test(self, file, episodes, render_mode=None, print_log=False):
+    def load_and_test(self, file: str, episodes: int, render_mode: Optional[str] = None,
+                      print_log: Optional[str] = False):
         '''
         Load a trained model and test it.
         
